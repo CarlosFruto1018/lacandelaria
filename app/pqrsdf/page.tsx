@@ -303,7 +303,7 @@ export default function PqrsdfPage() {
                     setAnonimo(e.target.checked);
                     setErrors({});
                   }}
-                  className="mt-0.5 h-4 w-4 accent-[#3366CC]"
+                  className="mt-0.5 h-4 w-4 accent-[#1A7F37]"
                 />
                 <span className="text-sm text-slate-600">
                   <strong className="text-navy">Radicar de forma anónima.</strong> No registraremos
@@ -420,7 +420,7 @@ export default function PqrsdfPage() {
               </dl>
 
               <label className="mt-5 flex cursor-pointer items-start gap-3 text-sm text-slate-600">
-                <input type="checkbox" checked={acepta} onChange={(e) => setAcepta(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#3366CC]" />
+                <input type="checkbox" checked={acepta} onChange={(e) => setAcepta(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#1A7F37]" />
                 Autorizo el tratamiento de mis datos personales conforme a la política de privacidad
                 de la institución y a la Ley 1581 de 2012.
               </label>

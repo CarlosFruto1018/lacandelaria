@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --color-navy: #0b192c;
-  --color-gold: #d4af37;
-  --color-surface: #f5f5f7;
+  --color-navy: #12261a;
+  --color-gold: #f5c518;
+  --color-surface: #f6f8f5;
   color-scheme: light;
 }
 
@@ -58,8 +58,8 @@ body {
 }
 
 ::selection {
-  background-color: rgba(212, 175, 55, 0.3);
-  color: #0b192c;
+  background-color: rgba(245, 197, 24, 0.35);
+  color: #12261a;
 }
 
 /* Contenido copiado de las páginas de transparencia */
@@ -72,7 +72,7 @@ body {
 .contenido-ita > * + * { margin-top: 1rem; }
 .contenido-ita h2,
 .contenido-ita h3,
-.contenido-ita h4 { color: #2951a3; font-weight: 700; margin-top: 1.75rem; line-height: 1.3; }
+.contenido-ita h4 { color: #12602a; font-weight: 700; margin-top: 1.75rem; line-height: 1.3; }
 .contenido-ita h2 { font-size: 1.5rem; }
 .contenido-ita h3 { font-size: 1.25rem; }
 .contenido-ita h4 { font-size: 1.05rem; }
@@ -80,8 +80,8 @@ body {
 .contenido-ita ul { list-style: disc; padding-left: 1.5rem; }
 .contenido-ita ol { list-style: decimal; padding-left: 1.5rem; }
 .contenido-ita li + li { margin-top: 0.35rem; }
-.contenido-ita a { color: #3366cc; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
-.contenido-ita a:hover { color: #8c7120; }
+.contenido-ita a { color: #1a7f37; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.contenido-ita a:hover { color: #8f6a00; }
 .contenido-ita img { max-width: 100%; height: auto; margin-inline: auto; }
 .contenido-ita iframe { width: 100%; max-width: 100%; border: 1px solid #cbd5e1; border-radius: 0.75rem; }
 .contenido-ita table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }

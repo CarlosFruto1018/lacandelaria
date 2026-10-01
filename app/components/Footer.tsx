@@ -7,8 +7,13 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="relative">
+      <div className="flex h-1.5 w-full" aria-hidden="true">
+        <span className="flex-1 bg-gold" />
+        <span className="flex-1 bg-govco" />
+        <span className="flex-1 bg-malambo-red" />
+      </div>
       {/* Bloque institucional estilo GOV.CO */}
-      <div className="bg-govco text-white">
+      <div className="bg-[#025DC3] text-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-3 md:text-left">
             <div>
