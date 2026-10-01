@@ -103,7 +103,7 @@ export default function Navbar() {
         </nav>
 
         {open && (
-          <div className="border-t border-navy/10 bg-white lg:hidden">
+          <div className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-navy/10 bg-white lg:hidden">
             <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
               {navLinks.map((link) => {
                 const isActive = link.href === "/" ? pathname === "/" : pathname?.startsWith(link.href);

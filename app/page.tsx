@@ -150,30 +150,30 @@ export default function HomePage() {
         <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-gold/25 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-malambo-red/20 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-28 pt-14 sm:px-6 lg:grid-cols-2 lg:pb-36 lg:pt-20">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-24 pt-10 sm:px-6 sm:pb-28 sm:pt-14 lg:grid-cols-2 lg:pb-36 lg:pt-20">
           <div className="text-center lg:text-left">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">
               <MapPin className="h-4 w-4 text-gold" />
               Malambo, Atlántico
             </span>
-            <h1 className="tracking-display mt-6 text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+            <h1 className="tracking-display mt-6 text-[2rem] font-extrabold leading-[1.12] text-white sm:text-5xl lg:text-6xl">
               Institución Educativa
               <span className="mt-1 block text-gold">Nuestra Señora de la Candelaria</span>
             </h1>
             <p className="mx-auto mt-5 max-w-lg text-lg text-white/85 lg:mx-0">
               Formamos niños, niñas y jóvenes con ciencia, virtud y paz para transformar su entorno.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
               <Link
                 href="/institucional"
-                className="press inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-navy shadow-hard transition-colors duration-200 hover:bg-gold-300"
+                className="press inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-navy shadow-hard transition-colors duration-200 hover:bg-gold-300"
               >
                 Conoce nuestra institución
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/admisiones"
-                className="press inline-flex items-center gap-2 rounded-full bg-white/10 px-7 py-3.5 text-sm font-bold text-white ring-1 ring-white/30 backdrop-blur transition-colors duration-200 hover:bg-white/20"
+                className="press inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-7 py-3.5 text-sm font-bold text-white ring-1 ring-white/30 backdrop-blur transition-colors duration-200 hover:bg-white/20"
               >
                 Admisiones
               </Link>
@@ -191,7 +191,7 @@ export default function HomePage() {
                 className="object-cover object-[55%_25%]"
               />
             </div>
-            <div className="absolute -bottom-6 -left-2 flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 shadow-card-hover sm:-left-6">
+            <div className="absolute -bottom-5 left-3 flex items-center gap-3 rounded-2xl bg-white p-2.5 pr-4 shadow-card-hover sm:-bottom-6 sm:-left-6 sm:p-3 sm:pr-5">
               <Image
                 src="/logos/escudo-colegio.png"
                 alt=""
@@ -204,7 +204,7 @@ export default function HomePage() {
                 <span className="block font-display text-sm font-bold text-navy">Educamos para la Paz</span>
               </span>
             </div>
-            <div className="absolute -right-2 -top-4 rounded-full bg-gold px-4 py-2 text-xs font-bold text-navy shadow-card-hover sm:-right-4">
+            <div className="absolute -top-3 right-3 rounded-full bg-gold px-3.5 py-1.5 text-xs font-bold text-navy shadow-card-hover sm:-right-4 sm:-top-4 sm:px-4 sm:py-2">
               Ciencia · Virtud · Paz
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function HomePage() {
       </section>
 
       {/* Servicios en línea */}
-      <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto mt-14 max-w-6xl px-4 sm:mt-20 sm:px-6">
         <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
           <div>
             <p className="text-sm font-semibold text-govco">Servicios en línea</p>
@@ -269,7 +269,7 @@ export default function HomePage() {
       </section>
 
       {/* Valores del escudo */}
-      <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6">
+      <section className="mx-auto mt-12 max-w-7xl px-4 sm:mt-16 sm:px-6">
         <div className="grid overflow-hidden rounded-[2rem] shadow-card md:grid-cols-3">
           {values.map(({ title, text, icon: Icon, style }) => (
             <div key={title} className={`flex items-center gap-4 p-7 ${style}`}>
@@ -286,7 +286,7 @@ export default function HomePage() {
       </section>
 
       {/* Todo sobre nuestra institución */}
-      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-24 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="text-sm font-semibold text-govco">Explora</p>
@@ -304,7 +304,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 sm:overflow-visible sm:px-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           {highlights.map((card, index) => {
             const Icon = card.icon;
             const tone = (["green", "gold", "red", "green"] as const)[index];
@@ -314,7 +314,7 @@ export default function HomePage() {
               red: { chip: "bg-malambo-red text-white", text: "text-malambo-red", hover: "group-hover:text-malambo-red" },
             }[tone];
             return (
-              <Link key={card.title} href={card.href} className="group block">
+              <Link key={card.title} href={card.href} className="group block w-[72%] shrink-0 snap-start sm:w-auto sm:shrink">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
                   <Image
                     src={card.image}
@@ -347,7 +347,7 @@ export default function HomePage() {
       </section>
 
       {/* Noticias */}
-      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-24 sm:px-6">
         <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
           <div className="flex flex-col items-start">
             <p className="text-sm font-semibold text-govco">Comunidad</p>
@@ -374,7 +374,7 @@ export default function HomePage() {
           <div>
             {featured && (
               <article className="group">
-                <div className="relative aspect-[16/8] overflow-hidden rounded-3xl">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-3xl sm:aspect-[16/8]">
                   <Image
                     src="/noticia-destacada.jpg"
                     alt=""
@@ -436,7 +436,7 @@ export default function HomePage() {
       </section>
 
       {/* Páginas de interés */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="flex items-center gap-4">
           <h2 className="tracking-display shrink-0 text-2xl font-extrabold text-navy sm:text-3xl">Páginas de interés</h2>
           <span className="h-px flex-1 bg-navy/15" aria-hidden="true" />

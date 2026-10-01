@@ -14,6 +14,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--color-surface);
   color: var(--color-navy);
   -webkit-font-smoothing: antialiased;
@@ -82,7 +83,10 @@ h4 {
 .contenido-ita h2 { font-size: 1.5rem; }
 .contenido-ita h3 { font-size: 1.25rem; }
 .contenido-ita h4 { font-size: 1.05rem; }
-.contenido-ita p { text-align: justify; }
+.contenido-ita p { text-align: left; }
+@media (min-width: 768px) {
+  .contenido-ita p { text-align: justify; }
+}
 .contenido-ita ul { list-style: disc; padding-left: 1.5rem; }
 .contenido-ita ol { list-style: decimal; padding-left: 1.5rem; }
 .contenido-ita li + li { margin-top: 0.35rem; }
