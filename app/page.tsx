@@ -16,6 +16,7 @@ import {
   Award,
   FileSignature,
   ArrowRight,
+  ArrowUpRight,
   Landmark,
   Scale,
   LayoutDashboard,
@@ -28,20 +29,23 @@ import {
 import QuickAccessCard from "@/app/components/QuickAccessCard";
 import { newsItems } from "@/lib/data";
 
-const quickAccess = [
-  { href: "/plataforma/notas", icon: GraduationCap, title: "Notas", description: "Consulta las calificaciones de tus estudiantes." },
-  { href: "/plataforma/horarios", icon: CalendarRange, title: "Horarios", description: "Horarios de clases por grado y jornada." },
-  { href: "/plataforma/guias", icon: BookOpenCheck, title: "Guías docentes", description: "Material y guías de trabajo de cada área." },
+const quickAccess: {
+  href: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}[] = [
+  { href: "/pqrsdf", icon: MessageSquareWarning, title: "Radicar PQRSDF", description: "Peticiones, quejas, reclamos, sugerencias y denuncias." },
+  { href: "/admisiones", icon: UserPlus, title: "Admisiones", description: "Cupos, requisitos y proceso de inscripción." },
+  { href: "/plataforma/notas", icon: GraduationCap, title: "Notas", description: "Calificaciones de tus estudiantes." },
+  { href: "/plataforma/horarios", icon: CalendarRange, title: "Horarios", description: "Clases por grado y jornada." },
+  { href: "/plataforma/guias", icon: BookOpenCheck, title: "Guías docentes", description: "Material de trabajo por área." },
   { href: "https://www.sismac.info/", icon: Database, title: "SIMAT", description: "Sistema Integrado de Matrícula." },
-  { href: "/pqrsdf", icon: MessageSquareWarning, title: "PQRSDF", description: "Radica peticiones, quejas, reclamos y sugerencias." },
-  { href: "/admisiones", icon: UserPlus, title: "Admisiones", description: "Información de cupos y proceso de inscripción." },
-  { href: "/documentos/MANUAL-DE-CONVIVENCIA-2025.pdf", icon: BookMarked, title: "Manual de Convivencia", description: "Manual de convivencia y sistema de evaluación 2025." },
-  { href: "/transparencia/formatos", icon: FileText, title: "Formatos", description: "Formatos institucionales para descargar." },
-  { href: "/transparencia/referentes-de-calidad", icon: Award, title: "Referentes de Calidad", description: "DBA, estándares, lineamientos y matrices de referencia." },
-  { href: "/contratacion", icon: FileSignature, title: "Proceso de contratación", description: "Procesos de contratación por vigencia." },
+  { href: "/documentos/MANUAL-DE-CONVIVENCIA-2025.pdf", icon: BookMarked, title: "Manual de Convivencia", description: "Convivencia y evaluación 2025." },
+  { href: "/transparencia/formatos", icon: FileText, title: "Formatos", description: "Documentos para descargar." },
+  { href: "/transparencia/referentes-de-calidad", icon: Award, title: "Referentes de Calidad", description: "DBA, estándares y lineamientos." },
+  { href: "/contratacion", icon: FileSignature, title: "Contratación", description: "Procesos por vigencia." },
 ];
-
-const tones = ["green", "gold", "red"] as const;
 
 const values: { title: string; text: string; icon: LucideIcon; style: string }[] = [
   { title: "Ciencia", text: "Pensamiento crítico, tecnología e innovación.", icon: FlaskConical, style: "bg-govco text-white" },
@@ -99,6 +103,12 @@ const interestLinks = [
   { name: "Secretaría de Educación de Malambo", href: "http://www.mineducacion.gov.co/", image: "/paginas-interes/semmalambo.png", width: 150, height: 50 },
   { name: "SAC - Sistema de Atención al Ciudadano", href: "http://sac2.gestionsecretariasdeeducacion.gov.co/app_Login/?sec=51", image: "/paginas-interes/sac.png", width: 418, height: 120 },
 ];
+
+const categoryTone: Record<string, string> = {
+  Circular: "bg-govco/10 text-govco",
+  Noticia: "bg-gold/25 text-gold-600",
+  Comunicado: "bg-malambo-red/10 text-malambo-red",
+};
 
 const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
 const [featured, ...others] = sortedNews;
@@ -232,23 +242,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Accesos rápidos */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeading
-          eyebrow="Servicios"
-          title="Accesos rápidos"
-          description="Los trámites y recursos que más consulta nuestra comunidad educativa."
-          center
-        />
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {quickAccess.map((item, index) => (
-            <QuickAccessCard key={item.title} {...item} tone={tones[index % tones.length]} />
-          ))}
+      {/* Servicios en línea */}
+      <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
+          <div>
+            <p className="text-sm font-semibold text-govco">Servicios en línea</p>
+            <h2 className="tracking-display mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
+              Todo en un solo lugar
+            </h2>
+            <div className="mt-4 flex h-1 w-16 overflow-hidden rounded-full" aria-hidden="true">
+              <span className="flex-1 bg-gold" />
+              <span className="flex-1 bg-govco" />
+              <span className="flex-1 bg-malambo-red" />
+            </div>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-navy/55">
+              Trámites, consultas y documentos de la comunidad educativa.
+            </p>
+          </div>
+
+          <div className="grid gap-x-12 border-t border-navy/10 sm:grid-cols-2">
+            {quickAccess.map((item, index) => (
+              <QuickAccessCard key={item.title} {...item} tone={(["green", "gold", "red"] as const)[index % 3]} />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Valores del escudo */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6">
+      <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6">
         <div className="grid overflow-hidden rounded-[2rem] shadow-card md:grid-cols-3">
           {values.map(({ title, text, icon: Icon, style }) => (
             <div key={title} className={`flex items-center gap-4 p-7 ${style}`}>
@@ -264,35 +285,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Destacados con foto */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeading eyebrow="Explora" title="Todo sobre nuestra institución" />
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((card) => {
+      {/* Todo sobre nuestra institución */}
+      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="text-sm font-semibold text-govco">Explora</p>
+            <h2 className="tracking-display mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
+              Todo sobre nuestra institución
+            </h2>
+            <div className="mt-4 flex h-1 w-16 overflow-hidden rounded-full" aria-hidden="true">
+              <span className="flex-1 bg-gold" />
+              <span className="flex-1 bg-govco" />
+              <span className="flex-1 bg-malambo-red" />
+            </div>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-navy/55">
+            Conoce quiénes somos, cómo trabajamos y cómo hacer parte de nuestra comunidad.
+          </p>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((card, index) => {
             const Icon = card.icon;
+            const tone = (["green", "gold", "red", "green"] as const)[index];
+            const toneStyle = {
+              green: { chip: "bg-govco text-white", text: "text-govco", hover: "group-hover:text-govco" },
+              gold: { chip: "bg-gold text-navy", text: "text-gold-600", hover: "group-hover:text-gold-600" },
+              red: { chip: "bg-malambo-red text-white", text: "text-malambo-red", hover: "group-hover:text-malambo-red" },
+            }[tone];
             return (
-              <Link
-                key={card.title}
-                href={card.href}
-                className="card-hover group relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-3xl p-6 text-white shadow-card"
-              >
-                <Image
-                  src={card.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-govco-dark via-govco-dark/60 to-transparent" />
-                <span className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 text-govco shadow-card">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <span className="relative text-xs font-bold uppercase tracking-wider text-gold">{card.eyebrow}</span>
-                <h3 className="relative mt-1 text-xl font-extrabold">{card.title}</h3>
-                <p className="relative mt-2 text-sm text-white/85">{card.description}</p>
-                <span className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-bold">
+              <Link key={card.title} href={card.href} className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+                  <Image
+                    src={card.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span
+                    className={`absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full ${toneStyle.chip}`}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </span>
+                </div>
+                <p className={`mt-4 text-xs font-bold uppercase tracking-wider ${toneStyle.text}`}>{card.eyebrow}</p>
+                <h3
+                  className={`mt-1 text-lg font-extrabold leading-snug text-navy transition-colors duration-200 ${toneStyle.hover}`}
+                >
+                  {card.title}
+                </h3>
+                <p className="mt-1 text-sm text-navy/55">{card.description}</p>
+                <span className={`mt-3 inline-flex items-center gap-1.5 text-sm font-bold ${toneStyle.text}`}>
                   Ver más
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
               </Link>
             );
@@ -301,27 +347,34 @@ export default function HomePage() {
       </section>
 
       {/* Noticias */}
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              eyebrow="Comunidad"
-              title="Noticias y comunicados"
-              description="Lo último que pasa en nuestra institución."
-            />
+      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
+          <div className="flex flex-col items-start">
+            <p className="text-sm font-semibold text-govco">Comunidad</p>
+            <h2 className="tracking-display mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
+              Noticias y comunicados
+            </h2>
+            <div className="mt-4 flex h-1 w-16 overflow-hidden rounded-full" aria-hidden="true">
+              <span className="flex-1 bg-gold" />
+              <span className="flex-1 bg-govco" />
+              <span className="flex-1 bg-malambo-red" />
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy/55">
+              Lo último que pasa en nuestra institución.
+            </p>
             <Link
               href="/noticias"
-              className="press inline-flex items-center gap-2 rounded-full bg-govco/10 px-5 py-2.5 text-sm font-bold text-govco transition-colors duration-200 hover:bg-govco hover:text-white"
+              className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-govco"
             >
-              Ver todas
-              <ArrowRight className="h-4 w-4" />
+              Ver todas las noticias
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
+          <div>
             {featured && (
-              <article className="card-hover group overflow-hidden rounded-3xl border border-navy/5 bg-surface shadow-card lg:col-span-3">
-                <div className="relative h-64 overflow-hidden sm:h-80">
+              <article className="group">
+                <div className="relative aspect-[16/8] overflow-hidden rounded-3xl">
                   <Image
                     src="/noticia-destacada.jpg"
                     alt=""
@@ -329,48 +382,51 @@ export default function HomePage() {
                     sizes="(min-width: 1024px) 60vw, 100vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
-                  <span className="absolute left-5 top-5 rounded-full bg-gold px-3 py-1 text-xs font-bold text-navy shadow-card">
-                    Destacado · {featured.category}
-                  </span>
                 </div>
-                <div className="p-7">
-                  <span className="flex items-center gap-1.5 text-sm text-navy/50">
+                <div className="mt-5 flex items-center gap-3 text-sm">
+                  <span className={`rounded-full px-3 py-1 text-xs font-bold ${categoryTone[featured.category]}`}>
+                    {featured.category}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-navy/50">
                     <CalendarDays className="h-4 w-4" />
                     {formatNewsDate(featured.date)}
                   </span>
-                  <h3 className="mt-2 text-2xl font-extrabold leading-snug text-navy">{featured.title}</h3>
-                  <p className="mt-2 text-navy/70">{featured.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-govco">
-                    Leer más
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
                 </div>
+                <h3 className="mt-3 text-2xl font-extrabold leading-snug text-navy transition-colors duration-200 group-hover:text-govco">
+                  {featured.title}
+                </h3>
+                <p className="mt-2 max-w-2xl text-navy/65">{featured.excerpt}</p>
               </article>
             )}
 
-            <div className="flex flex-col gap-5 lg:col-span-2">
+            <div className="mt-8 border-t border-navy/10">
               {others.map((item) => {
                 const date = new Date(item.date);
                 return (
                   <article
                     key={item.id}
-                    className="card-hover group flex flex-1 gap-4 rounded-3xl border border-navy/5 bg-surface p-5 shadow-card"
+                    className="group flex items-start gap-5 border-b border-navy/10 py-5 transition-colors duration-200 hover:border-govco"
                   >
-                    <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-white text-govco shadow-card">
-                      <span className="font-display text-2xl font-extrabold leading-none">
+                    <div className="w-12 shrink-0 text-center">
+                      <span className="block font-display text-2xl font-extrabold leading-none text-navy">
                         {String(date.getUTCDate()).padStart(2, "0")}
                       </span>
-                      <span className="mt-0.5 text-[11px] font-bold uppercase text-malambo-red">
+                      <span className="mt-1 block text-[11px] font-bold uppercase tracking-wider text-malambo-red">
                         {new Intl.DateTimeFormat("es-CO", { month: "short", timeZone: "UTC" })
                           .format(date)
                           .replace(".", "")}
                       </span>
                     </div>
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-gold-600">{item.category}</span>
-                      <h3 className="mt-0.5 font-bold leading-snug text-navy">{item.title}</h3>
-                      <p className="mt-1 line-clamp-2 text-sm text-navy/60">{item.excerpt}</p>
+                    <div className="min-w-0 flex-1">
+                      <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${categoryTone[item.category]}`}>
+                        {item.category}
+                      </span>
+                      <h3 className="mt-1.5 font-bold leading-snug text-navy transition-colors duration-200 group-hover:text-govco">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 line-clamp-2 text-sm text-navy/55">{item.excerpt}</p>
                     </div>
+                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-navy/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-govco" />
                   </article>
                 );
               })}
