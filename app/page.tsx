@@ -117,7 +117,7 @@ export default function HomePage() {
           className="object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-govco-dark via-govco-dark/80 via-35% to-transparent to-65%" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-40 text-center sm:px-6 sm:pb-28 md:text-left">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-36 pt-40 text-center sm:px-6 md:pb-28 md:text-left">
           <h1 className="tracking-display max-w-4xl text-balance text-3xl font-extrabold uppercase leading-tight text-white drop-shadow sm:text-5xl">
             Institución Educativa
             <span className="block text-gold">Nuestra Señora de la Candelaria</span>
@@ -145,7 +145,8 @@ export default function HomePage() {
 
 
       {/* Franja de datos de contacto sobre el hero */}
-      <section className="relative z-10 mx-auto -mt-12 max-w-6xl px-4 sm:px-6">
+      <section className="relative z-10 h-8 bg-surface md:h-12">
+        <div className="absolute inset-x-0 top-1/2 mx-auto max-w-6xl -translate-y-1/2 px-4 sm:px-6">
         <div className="grid grid-cols-1 divide-y divide-slate-100 rounded-apple border border-slate-200/80 bg-white shadow-card-hover md:grid-cols-3 md:divide-x md:divide-y-0">
           {[
             { icon: Clock, label: "Horario de atención", text: "Lunes a viernes, 7:00 a.m. a 3:00 p.m." },
@@ -163,10 +164,11 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Accesos rápidos */}
-      <section className="relative overflow-hidden bg-govco-dark py-16">
+      <section className="relative overflow-hidden bg-govco-dark pb-16 pt-44 md:pt-28">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{
