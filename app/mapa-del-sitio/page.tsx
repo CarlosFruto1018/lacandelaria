@@ -17,6 +17,7 @@ const groups: Group[] = [
       { label: "Conoce nuestra institución", href: "/institucional" },
       { label: "Admisiones", href: "/admisiones" },
       { label: "PQRSDF", href: "/pqrsdf" },
+      { label: "Calendario", href: "/calendario" },
       { label: "Manual de Convivencia 2025", href: "/documentos/MANUAL-DE-CONVIVENCIA-2025.pdf" },
       { label: "Formatos", href: "/transparencia/formatos" },
       { label: "Referentes de Calidad", href: "/transparencia/referentes-de-calidad" },

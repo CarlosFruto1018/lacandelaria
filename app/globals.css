@@ -5,7 +5,7 @@
 :root {
   --color-navy: #12261a;
   --color-gold: #f5c518;
-  --color-surface: #f6f8f5;
+  --color-surface: #fbf8f1;
   color-scheme: light;
 }
 
@@ -16,13 +16,19 @@ html {
 body {
   background-color: var(--color-surface);
   color: var(--color-navy);
-  font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 @layer utilities {
   .glass {
-    @apply backdrop-blur-md bg-white/80 border border-slate-200/80;
+    @apply backdrop-blur-md bg-white/85 border-b border-navy/10;
   }
 
   .glass-dark {
@@ -38,11 +44,11 @@ body {
   }
 
   .press {
-    @apply transition-all duration-200 active:scale-95;
+    @apply transition-all duration-200 active:scale-[0.97];
   }
 
   .card-hover {
-    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
   }
 }
 
@@ -80,11 +86,11 @@ body {
 .contenido-ita ul { list-style: disc; padding-left: 1.5rem; }
 .contenido-ita ol { list-style: decimal; padding-left: 1.5rem; }
 .contenido-ita li + li { margin-top: 0.35rem; }
-.contenido-ita a { color: #1a7f37; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.contenido-ita a { color: #1a7f37; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .contenido-ita a:hover { color: #8f6a00; }
 .contenido-ita img { max-width: 100%; height: auto; margin-inline: auto; }
-.contenido-ita iframe { width: 100%; max-width: 100%; border: 1px solid #cbd5e1; border-radius: 0.75rem; }
+.contenido-ita iframe { width: 100%; max-width: 100%; border: 1px solid #d6e2da; border-radius: 1rem; }
 .contenido-ita table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
 .contenido-ita td,
-.contenido-ita th { border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; vertical-align: top; }
-.contenido-ita hr { border-color: #e2e8f0; }
+.contenido-ita th { border: 1px solid #e3ebe5; padding: 0.5rem 0.75rem; vertical-align: top; }
+.contenido-ita hr { border-color: #e3ebe5; }

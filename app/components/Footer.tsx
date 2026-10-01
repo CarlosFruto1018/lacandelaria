@@ -17,11 +17,12 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-3 md:text-left">
             <div>
-              <h3 className="text-xl font-semibold tracking-tight">
+              <h3 className="text-2xl font-extrabold leading-tight">
                 Institución Educativa
                 <br />
-                La Candelaria
+                Nuestra Señora de la Candelaria
               </h3>
+              <span className="mx-auto mt-3 block h-1 w-12 rounded-full bg-gold md:mx-0" />
 
               <ul className="mt-5 space-y-4 text-base text-white/85">
                 <li className="flex flex-col items-center gap-1 md:items-start">
@@ -76,9 +77,8 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-base font-semibold uppercase tracking-wide text-white">
-                Acerca del sitio
-              </h4>
+              <h4 className="text-lg font-bold text-white">Acerca del sitio</h4>
+              <span className="mx-auto mt-3 block h-1 w-12 rounded-full bg-gold md:mx-0" />
               <ul className="mt-5 space-y-3 text-base text-white/80">
                 <li>
                   <Link href="/mapa-del-sitio" className="hover:text-gold transition-colors duration-200">
@@ -114,9 +114,8 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-base font-semibold uppercase tracking-wide text-white">
-                Redes sociales
-              </h4>
+              <h4 className="text-lg font-bold text-white">Redes sociales</h4>
+              <span className="mx-auto mt-3 block h-1 w-12 rounded-full bg-gold md:mx-0" />
               <ul className="mt-5 space-y-3 text-base text-white/80">
                 <li>
                   <a
@@ -142,21 +141,31 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/15 pt-8 sm:flex-row">
-            <Image
-              src="/logos/co-colombia.png"
-              alt="CO Colombia"
-              width={400}
-              height={369}
-              className="h-20 w-auto"
-            />
-            <Image
-              src="/logos/escudo-colegio.png"
-              alt="Escudo de la I.E. Nuestra Señora de la Candelaria"
-              width={400}
-              height={524}
-              className="h-24 w-auto"
-            />
+          <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/20 pt-8 sm:flex-row">
+            <a
+              href="https://www.colombia.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Marca país CO Colombia"
+              className="press transition-transform duration-200 hover:-translate-y-1"
+            >
+              <Image
+                src="/logos/co-colombia.png"
+                alt="CO Colombia"
+                width={400}
+                height={392}
+                className="h-20 w-auto"
+              />
+            </a>
+            <div>
+              <Image
+                src="/logos/escudo-colegio.png"
+                alt="Escudo de la I.E. Nuestra Señora de la Candelaria"
+                width={400}
+                height={524}
+                className="h-24 w-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -172,7 +181,7 @@ function ScrollToTopButton() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Volver arriba"
-      className="press fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-gold shadow-card-hover transition-all duration-200 hover:bg-navy-600"
+      className="press fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-govco text-white shadow-hard transition-all duration-200 hover:bg-govco-dark"
     >
       <ArrowUp className="h-5 w-5" />
     </button>

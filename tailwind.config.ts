@@ -31,7 +31,7 @@ const config: Config = {
           500: "#D9A800",
           600: "#8F6A00",
         },
-        surface: "#F6F8F5",
+        surface: "#FBF8F1",
         govco: {
           DEFAULT: "#1A7F37",
           dark: "#12602A",
@@ -42,25 +42,19 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Inter",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "Segoe UI", "Arial", "sans-serif"],
       },
       backdropBlur: {
         apple: "20px",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(11,25,44,0.04), 0 8px 24px rgba(11,25,44,0.06)",
-        "card-hover": "0 2px 4px rgba(11,25,44,0.06), 0 16px 40px rgba(11,25,44,0.10)",
+        card: "0 1px 2px rgba(18,38,26,0.04), 0 12px 32px -14px rgba(18,38,26,0.18)",
+        "card-hover": "0 2px 6px rgba(18,38,26,0.06), 0 24px 48px -16px rgba(18,38,26,0.28)",
+        hard: "0 10px 25px -10px rgba(18,38,26,0.35)",
       },
       borderRadius: {
-        apple: "1.25rem",
+        apple: "1.5rem",
       },
     },
   },

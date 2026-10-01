@@ -16,70 +16,17 @@ import {
   Award,
   FileSignature,
   ArrowRight,
-  type LucideIcon,
   Landmark,
   Scale,
   LayoutDashboard,
   School,
+  FlaskConical,
+  Sparkles,
+  HandHeart,
+  type LucideIcon,
 } from "lucide-react";
 import QuickAccessCard from "@/app/components/QuickAccessCard";
 import { newsItems } from "@/lib/data";
-
-const featureCards: {
-  href: string;
-  icon: LucideIcon;
-  eyebrow: string;
-  title: string;
-  description: string;
-  gradient: string;
-  image?: string;
-}[] = [
-  {
-    href: "/institucional",
-    icon: Landmark,
-    eyebrow: "Institucional",
-    title: "Institucional",
-    description: "Misión, visión, manual de convivencia y equipo directivo.",
-    gradient: "from-green-200 to-green-300",
-    image: "/aula.jpg",
-  },
-  {
-    href: "/transparencia",
-    icon: Scale,
-    eyebrow: "Ley 1712 de 2014",
-    title: "Transparencia y Ley",
-    description: "Informes financieros y rendición de cuentas públicas.",
-    gradient: "from-yellow-200 to-yellow-300",
-    image: "/transparencia.jpg",
-  },
-  {
-    href: "/plataforma",
-    icon: LayoutDashboard,
-    eyebrow: "Académico",
-    title: "Gestión Académica",
-    description: "Plataforma académica y calendario escolar.",
-    gradient: "from-emerald-200 to-green-300",
-    image: "/gestion-academica.jpg",
-  },
-  {
-    href: "/admisiones",
-    icon: School,
-    eyebrow: "Matrículas",
-    title: "Admisiones y Cupos",
-    description: "Procedimiento de inscripción y requisitos de matrícula.",
-    gradient: "from-red-200 to-rose-300",
-    image: "/admisiones.jpg",
-  },
-];
-
-const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
-const [featured, ...others] = sortedNews;
-
-function formatNewsDate(dateString: string) {
-  return new Intl.DateTimeFormat("es-CO", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(
-    new Date(dateString),
-  );
-}
 
 const quickAccess = [
   { href: "/plataforma/notas", icon: GraduationCap, title: "Notas", description: "Consulta las calificaciones de tus estudiantes." },
@@ -93,142 +40,259 @@ const quickAccess = [
   { href: "/transparencia/referentes-de-calidad", icon: Award, title: "Referentes de Calidad", description: "DBA, estándares, lineamientos y matrices de referencia." },
   { href: "/contratacion", icon: FileSignature, title: "Proceso de contratación", description: "Procesos de contratación por vigencia." },
 ];
-const accents = ["gold", "green", "red"] as const;
 
-// Distribución tipo "bento": la primera tarjeta es grande y la última ocupa todo el ancho.
-const bento = [
-  "md:col-span-2 md:row-span-2 md:min-h-[460px]",
-  "",
-  "",
-  "md:col-span-3 md:min-h-[200px]",
+const tones = ["green", "gold", "red"] as const;
+
+const values: { title: string; text: string; icon: LucideIcon; style: string }[] = [
+  { title: "Ciencia", text: "Pensamiento crítico, tecnología e innovación.", icon: FlaskConical, style: "bg-govco text-white" },
+  { title: "Virtud", text: "Formación humana, ética y espiritual.", icon: Sparkles, style: "bg-gold text-navy" },
+  { title: "Paz", text: "Convivencia, respeto y comunidad.", icon: HandHeart, style: "bg-malambo-red text-white" },
 ];
+
+const highlights: {
+  href: string;
+  icon: LucideIcon;
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+}[] = [
+  {
+    href: "/institucional",
+    icon: Landmark,
+    eyebrow: "Institucional",
+    title: "Conoce el colegio",
+    description: "Misión, visión, valores y equipo directivo.",
+    image: "/aula.jpg",
+  },
+  {
+    href: "/transparencia",
+    icon: Scale,
+    eyebrow: "Ley 1712 de 2014",
+    title: "Transparencia",
+    description: "Información pública, informes y rendición de cuentas.",
+    image: "/transparencia.jpg",
+  },
+  {
+    href: "/plataforma",
+    icon: LayoutDashboard,
+    eyebrow: "Académico",
+    title: "Gestión Académica",
+    description: "Plataforma académica y calendario escolar.",
+    image: "/gestion-academica.jpg",
+  },
+  {
+    href: "/admisiones",
+    icon: School,
+    eyebrow: "Matrículas",
+    title: "Admisiones y Cupos",
+    description: "Requisitos y proceso de inscripción.",
+    image: "/admisiones.jpg",
+  },
+];
+
+const interestLinks = [
+  { name: "Humano - Volantes de Pago", href: "https://rrhh.gestionsecretariasdeeducacion.gov.co/humanoEL/Ingresar.aspx?Ent=Malambo", image: "/paginas-interes/volantepago.png", width: 150, height: 83 },
+  { name: "Colombia Aprende", href: "http://www.colombiaaprende.edu.co/", image: "/paginas-interes/colombia_aprende_logo.gif", width: 150, height: 59 },
+  { name: "Supérate con el Saber 2.0", href: "http://superate.edu.co/", image: "/paginas-interes/superate.png", width: 150, height: 95 },
+  { name: "Ministerio de Educación Nacional", href: "http://www.mineducacion.gov.co/", image: "/paginas-interes/men.jpg", width: 150, height: 63 },
+  { name: "Secretaría de Educación de Malambo", href: "http://www.mineducacion.gov.co/", image: "/paginas-interes/semmalambo.png", width: 150, height: 50 },
+  { name: "SAC - Sistema de Atención al Ciudadano", href: "http://sac2.gestionsecretariasdeeducacion.gov.co/app_Login/?sec=51", image: "/paginas-interes/sac.png", width: 418, height: 120 },
+];
+
+const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
+const [featured, ...others] = sortedNews;
+
+function formatNewsDate(dateString: string) {
+  return new Intl.DateTimeFormat("es-CO", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(
+    new Date(dateString),
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  center = false,
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  center?: boolean;
+}) {
+  return (
+    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+      <span className="inline-flex items-center gap-2 rounded-full bg-govco/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-govco">
+        <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+        {eyebrow}
+      </span>
+      <h2 className="tracking-display mt-3 text-3xl font-extrabold text-navy sm:text-4xl">{title}</h2>
+      {description && <p className="mt-3 text-base text-navy/60">{description}</p>}
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero: estudiantes de fondo + nombre del colegio */}
-      <section className="relative flex min-h-[560px] items-end overflow-hidden bg-govco-dark sm:min-h-[640px]">
-        <Image
-          src="/estudiantes.jpg"
-          alt="Estudiantes de la I.E. Nuestra Señora de la Candelaria"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-govco-dark via-govco-dark/80 via-35% to-transparent to-65%" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-36 pt-40 text-center sm:px-6 md:pb-28 md:text-left">
-          <h1 className="tracking-display max-w-4xl text-balance text-3xl font-extrabold uppercase leading-tight text-white drop-shadow sm:text-5xl">
-            Institución Educativa
-            <span className="block text-gold">Nuestra Señora de la Candelaria</span>
-          </h1>
-          <p className="mt-3 max-w-xl text-base text-white/90 sm:text-lg">
-            Ciencia, virtud y paz para nuestra comunidad.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-            <Link
-              href="/institucional"
-              className="press inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy shadow-card transition-all duration-200 hover:bg-gold-300"
-            >
-              Conoce nuestra institución
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/transparencia"
-              className="press inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all duration-200 hover:bg-white/20"
-            >
-              Transparencia
-            </Link>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-govco-dark via-govco to-govco-dark">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-gold/25 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-malambo-red/20 blur-3xl" />
+
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-28 pt-14 sm:px-6 lg:grid-cols-2 lg:pb-36 lg:pt-20">
+          <div className="text-center lg:text-left">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">
+              <MapPin className="h-4 w-4 text-gold" />
+              Malambo, Atlántico
+            </span>
+            <h1 className="tracking-display mt-6 text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+              Institución Educativa
+              <span className="mt-1 block text-gold">Nuestra Señora de la Candelaria</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-lg text-lg text-white/85 lg:mx-0">
+              Formamos niños, niñas y jóvenes con ciencia, virtud y paz para transformar su entorno.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+              <Link
+                href="/institucional"
+                className="press inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-navy shadow-hard transition-colors duration-200 hover:bg-gold-300"
+              >
+                Conoce nuestra institución
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/admisiones"
+                className="press inline-flex items-center gap-2 rounded-full bg-white/10 px-7 py-3.5 text-sm font-bold text-white ring-1 ring-white/30 backdrop-blur transition-colors duration-200 hover:bg-white/20"
+              >
+                Admisiones
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] border-[6px] border-white/90 shadow-card-hover">
+              <Image
+                src="/estudiantes.jpg"
+                alt="Estudiantes de la I.E. Nuestra Señora de la Candelaria"
+                fill
+                priority
+                sizes="(min-width: 1024px) 45vw, 90vw"
+                className="object-cover object-[55%_25%]"
+              />
+            </div>
+            <div className="absolute -bottom-6 -left-2 flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 shadow-card-hover sm:-left-6">
+              <Image
+                src="/logos/escudo-colegio.png"
+                alt=""
+                width={400}
+                height={524}
+                className="h-12 w-auto"
+              />
+              <span>
+                <span className="block text-xs font-semibold text-navy/60">Nuestro lema</span>
+                <span className="block font-display text-sm font-bold text-navy">Educamos para la Paz</span>
+              </span>
+            </div>
+            <div className="absolute -right-2 -top-4 rounded-full bg-gold px-4 py-2 text-xs font-bold text-navy shadow-card-hover sm:-right-4">
+              Ciencia · Virtud · Paz
+            </div>
           </div>
         </div>
+
+        {/* Onda inferior */}
+        <svg
+          className="absolute bottom-0 left-0 h-16 w-full text-surface sm:h-24"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path fill="currentColor" d="M0,64 C240,120 480,120 720,80 C960,40 1200,20 1440,60 L1440,120 L0,120 Z" />
+        </svg>
       </section>
 
-
-      {/* Franja de datos de contacto sobre el hero */}
-      <section className="relative z-10 h-8 bg-surface md:h-12">
-        <div className="absolute inset-x-0 top-1/2 mx-auto max-w-6xl -translate-y-1/2 px-4 sm:px-6">
-        <div className="grid grid-cols-1 divide-y divide-slate-100 rounded-apple border border-slate-200/80 bg-white shadow-card-hover md:grid-cols-3 md:divide-x md:divide-y-0">
+      {/* Datos de contacto */}
+      <section className="relative z-10 mx-auto -mt-4 max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-4 md:grid-cols-3">
           {[
-            { icon: Clock, label: "Horario de atención", text: "Lunes a viernes, 7:00 a.m. a 3:00 p.m." },
-            { icon: Phone, label: "Línea de atención y WhatsApp", text: "+57 304 202 6613" },
-            { icon: MapPin, label: "Sede principal", text: "Calle 10 #6sur-01, Malambo, Atlántico" },
-          ].map(({ icon: Icon, label, text }) => (
-            <div key={label} className="flex items-center gap-4 p-5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-govco text-white ring-2 ring-gold/70">
-                <Icon className="h-5 w-5" />
+            { icon: Clock, label: "Horario de atención", text: "Lunes a viernes, 7:00 a.m. a 3:00 p.m.", tone: "bg-govco/10 text-govco" },
+            { icon: Phone, label: "Llamadas y WhatsApp", text: "+57 304 202 6613", tone: "bg-gold/20 text-gold-600" },
+            { icon: MapPin, label: "Sede principal", text: "Calle 10 #6sur-01, Malambo", tone: "bg-malambo-red/10 text-malambo-red" },
+          ].map(({ icon: Icon, label, text, tone }) => (
+            <div key={label} className="flex items-center gap-4 rounded-3xl bg-white p-5 shadow-card">
+              <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${tone}`}>
+                <Icon className="h-6 w-6" />
               </span>
               <span>
-                <span className="block text-xs font-semibold uppercase tracking-wide text-gold-600">{label}</span>
-                <span className="block text-sm font-medium text-navy">{text}</span>
+                <span className="block text-xs font-semibold text-navy/50">{label}</span>
+                <span className="block font-bold text-navy">{text}</span>
               </span>
             </div>
           ))}
         </div>
-        </div>
       </section>
 
       {/* Accesos rápidos */}
-      <section className="relative overflow-hidden bg-govco-dark pb-16 pt-44 md:pt-28">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 90% 10%, rgba(245,197,24,0.45), transparent 40%), radial-gradient(circle at 5% 95%, rgba(214,40,40,0.35), transparent 40%)",
-          }}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <SectionHeading
+          eyebrow="Servicios"
+          title="Accesos rápidos"
+          description="Los trámites y recursos que más consulta nuestra comunidad educativa."
+          center
         />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="text-center">
-            <span className="text-xs font-semibold uppercase tracking-wide text-gold">Servicios</span>
-            <h2 className="tracking-display mt-1 text-2xl font-bold text-white sm:text-3xl">Accesos rápidos</h2>
-            <p className="mx-auto mt-1.5 max-w-xl text-sm text-white/80">
-              Lo que más consulta nuestra comunidad educativa.
-            </p>
-          </div>
-          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {quickAccess.map((item, index) => (
-              <QuickAccessCard key={item.title} {...item} accent={accents[index % accents.length]} />
-            ))}
-          </div>
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {quickAccess.map((item, index) => (
+            <QuickAccessCard key={item.title} {...item} tone={tones[index % tones.length]} />
+          ))}
         </div>
       </section>
 
-      {/* Tarjetas principales */}
-      <section className="bg-white py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 md:grid-cols-3">
-          {featureCards.map((card, index) => {
+      {/* Valores del escudo */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid overflow-hidden rounded-[2rem] shadow-card md:grid-cols-3">
+          {values.map(({ title, text, icon: Icon, style }) => (
+            <div key={title} className={`flex items-center gap-4 p-7 ${style}`}>
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20">
+                <Icon className="h-7 w-7" />
+              </span>
+              <span>
+                <span className="block font-display text-2xl font-extrabold">{title}</span>
+                <span className="block text-sm opacity-90">{text}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Destacados con foto */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <SectionHeading eyebrow="Explora" title="Todo sobre nuestra institución" />
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((card) => {
             const Icon = card.icon;
-            const onImage = Boolean(card.image);
             return (
               <Link
                 key={card.title}
                 href={card.href}
-                className={`card-hover group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-apple bg-gradient-to-br ${card.gradient} p-8 ${onImage ? "text-white" : "text-navy"} ${bento[index]}`}
+                className="card-hover group relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-3xl p-6 text-white shadow-card"
               >
-                {card.image && (
-                  <>
-                    <Image
-                      src={card.image}
-                      alt=""
-                      fill
-                      sizes="(min-width: 768px) 66vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-govco-dark/90 via-govco-dark/55 to-govco/30" />
-                  </>
-                )}
-                <span className="absolute right-6 top-6 z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-govco ring-2 ring-gold">
-                  <Icon className="h-7 w-7 text-white" />
+                <Image
+                  src={card.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-govco-dark via-govco-dark/60 to-transparent" />
+                <span className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 text-govco shadow-card">
+                  <Icon className="h-6 w-6" />
                 </span>
-                <span className={`relative text-xs font-semibold uppercase tracking-wide ${onImage ? "text-gold" : "text-govco-dark"}`}>
-                  {card.eyebrow}
-                </span>
-                <h3 className={`tracking-display relative mt-1 font-bold ${index === 0 ? "text-3xl" : "text-2xl"}`}>{card.title}</h3>
-                <p className={`relative mt-2 max-w-sm text-sm ${onImage ? "text-white/90" : "text-slate-600"}`}>
-                  {card.description}
-                </p>
-                <span className={`relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold ${onImage ? "text-white" : "text-govco-dark"}`}>
+                <span className="relative text-xs font-bold uppercase tracking-wider text-gold">{card.eyebrow}</span>
+                <h3 className="relative mt-1 text-xl font-extrabold">{card.title}</h3>
+                <p className="relative mt-2 text-sm text-white/85">{card.description}</p>
+                <span className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-bold">
                   Ver más
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </Link>
             );
@@ -237,98 +301,109 @@ export default function HomePage() {
       </section>
 
       {/* Noticias */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex items-end justify-between">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-gold-600">Comunidad</span>
-              <h2 className="tracking-display mt-1 text-2xl font-bold text-navy sm:text-3xl">
-                Noticias y comunicados
-              </h2>
-              <p className="mt-1.5 text-sm text-slate-500">Lo último que pasa en nuestra institución.</p>
-            </div>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="Comunidad"
+              title="Noticias y comunicados"
+              description="Lo último que pasa en nuestra institución."
+            />
             <Link
               href="/noticias"
-              className="press hidden items-center gap-1.5 rounded-full border border-govco/30 px-5 py-2.5 text-sm font-semibold text-govco transition-all duration-200 hover:bg-govco hover:text-white sm:inline-flex"
+              className="press inline-flex items-center gap-2 rounded-full bg-govco/10 px-5 py-2.5 text-sm font-bold text-govco transition-colors duration-200 hover:bg-govco hover:text-white"
             >
               Ver todas
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-5">
-            {/* Noticia destacada */}
+          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
             {featured && (
-              <article className="card-hover group relative flex flex-col justify-end overflow-hidden rounded-apple bg-govco-dark p-8 text-white lg:col-span-3 lg:min-h-[420px]">
-                <Image
-                  src="/noticia-destacada.jpg"
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-govco-dark via-govco-dark/80 via-45% to-govco-dark/10" />
-                <span className="relative inline-flex w-fit items-center rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy">
-                  Destacado · {featured.category}
-                </span>
-                <h3 className="tracking-display relative mt-4 text-2xl font-bold leading-tight sm:text-3xl">
-                  {featured.title}
-                </h3>
-                <p className="relative mt-3 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">
-                  {featured.excerpt}
-                </p>
-                <div className="relative mt-6 flex items-center gap-4 text-sm">
-                  <span className="flex items-center gap-1.5 text-white/80">
-                    <CalendarDays className="h-4 w-4 text-gold" />
+              <article className="card-hover group overflow-hidden rounded-3xl border border-navy/5 bg-surface shadow-card lg:col-span-3">
+                <div className="relative h-64 overflow-hidden sm:h-80">
+                  <Image
+                    src="/noticia-destacada.jpg"
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute left-5 top-5 rounded-full bg-gold px-3 py-1 text-xs font-bold text-navy shadow-card">
+                    Destacado · {featured.category}
+                  </span>
+                </div>
+                <div className="p-7">
+                  <span className="flex items-center gap-1.5 text-sm text-navy/50">
+                    <CalendarDays className="h-4 w-4" />
                     {formatNewsDate(featured.date)}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 font-semibold text-gold">
+                  <h3 className="mt-2 text-2xl font-extrabold leading-snug text-navy">{featured.title}</h3>
+                  <p className="mt-2 text-navy/70">{featured.excerpt}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-govco">
                     Leer más
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </div>
               </article>
             )}
 
-            {/* Lista del resto */}
-            <div className="flex flex-col gap-4 lg:col-span-2">
+            <div className="flex flex-col gap-5 lg:col-span-2">
               {others.map((item) => {
                 const date = new Date(item.date);
                 return (
                   <article
                     key={item.id}
-                    className="card-hover group flex flex-1 gap-4 rounded-apple border border-slate-200/80 bg-surface p-5"
+                    className="card-hover group flex flex-1 gap-4 rounded-3xl border border-navy/5 bg-surface p-5 shadow-card"
                   >
-                    <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-govco text-white ring-2 ring-gold/70">
-                      <span className="text-xl font-extrabold leading-none">
+                    <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-white text-govco shadow-card">
+                      <span className="font-display text-2xl font-extrabold leading-none">
                         {String(date.getUTCDate()).padStart(2, "0")}
                       </span>
-                      <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-gold">
+                      <span className="mt-0.5 text-[11px] font-bold uppercase text-malambo-red">
                         {new Intl.DateTimeFormat("es-CO", { month: "short", timeZone: "UTC" })
                           .format(date)
                           .replace(".", "")}
                       </span>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold uppercase tracking-wide text-gold-600">
-                        {item.category}
-                      </span>
-                      <h3 className="mt-0.5 text-base font-bold leading-snug text-navy">{item.title}</h3>
-                      <p className="mt-1 line-clamp-2 text-sm text-slate-600">{item.excerpt}</p>
+                      <span className="text-xs font-bold uppercase tracking-wider text-gold-600">{item.category}</span>
+                      <h3 className="mt-0.5 font-bold leading-snug text-navy">{item.title}</h3>
+                      <p className="mt-1 line-clamp-2 text-sm text-navy/60">{item.excerpt}</p>
                     </div>
                   </article>
                 );
               })}
             </div>
           </div>
+        </div>
+      </section>
 
-          <Link
-            href="/noticias"
-            className="press mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-govco sm:hidden"
-          >
-            Ver todas
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+      {/* Páginas de interés */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="flex items-center gap-4">
+          <h2 className="tracking-display shrink-0 text-2xl font-extrabold text-navy sm:text-3xl">Páginas de interés</h2>
+          <span className="h-px flex-1 bg-navy/15" aria-hidden="true" />
+        </div>
+        <div className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+          {interestLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={link.name}
+              className="press flex items-center justify-center rounded-2xl p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-card"
+            >
+              <Image
+                src={link.image}
+                alt={link.name}
+                width={link.width}
+                height={link.height}
+                className="h-auto max-h-24 w-auto max-w-full object-contain"
+              />
+            </a>
+          ))}
         </div>
       </section>
     </>
