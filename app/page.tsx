@@ -316,8 +316,8 @@ export default function HomePage() {
               red: { chip: "bg-malambo-red text-white", text: "text-malambo-red", hover: "group-hover:text-malambo-red" },
             }[tone];
             return (
-              <Link key={card.title} href={card.href} className="group block w-[72%] shrink-0 snap-start sm:w-auto sm:shrink">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+              <Link key={card.title} href={card.href} className="group block w-[82%] shrink-0 snap-start rounded-3xl bg-white p-3 shadow-card sm:w-auto sm:shrink sm:rounded-none sm:bg-transparent sm:p-0 sm:shadow-none">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[4/5] sm:rounded-3xl">
                   <Image
                     src={card.image}
                     alt=""
@@ -331,7 +331,8 @@ export default function HomePage() {
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
                 </div>
-                <p className={`mt-4 text-xs font-bold uppercase tracking-wider ${toneStyle.text}`}>{card.eyebrow}</p>
+                <div className="px-2 pb-2 pt-4 sm:px-0 sm:pb-0">
+                <p className={`text-xs font-bold uppercase tracking-wider ${toneStyle.text}`}>{card.eyebrow}</p>
                 <h3
                   className={`mt-1 text-lg font-extrabold leading-snug text-navy transition-colors duration-200 ${toneStyle.hover}`}
                 >
@@ -342,6 +343,7 @@ export default function HomePage() {
                   Ver más
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
+                </div>
               </Link>
             );
           })}

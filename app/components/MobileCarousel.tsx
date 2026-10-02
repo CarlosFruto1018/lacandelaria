@@ -1,11 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const AUTOPLAY_MS = 3800;
+const RESUME_MS = 6000;
+const SIDE_PADDING = 16;
 
 /**
- * Carrusel deslizable en celular (con puntos y flechas). A partir de `sm`
- * se muestra como cuadrícula normal; las clases de la cuadrícula llegan por `gridClassName`.
+ * Carrusel que avanza solo en celular (con puntos). A partir de `sm` se muestra
+ * como cuadrícula normal; las clases de la cuadrícula llegan por `gridClassName`.
  */
 export default function MobileCarousel({
   children,
@@ -15,25 +18,38 @@ export default function MobileCarousel({
   gridClassName?: string;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
+  const pausedUntil = useRef(0);
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(0);
+
+  const items = useCallback(() => Array.from(scroller.current?.children ?? []) as HTMLElement[], []);
 
   const update = useCallback(() => {
     const el = scroller.current;
     if (!el) return;
-    const items = Array.from(el.children) as HTMLElement[];
-    setCount(items.length);
+    const list = items();
+    setCount(list.length);
     let closest = 0;
     let min = Infinity;
-    items.forEach((item, index) => {
-      const distance = Math.abs(item.offsetLeft - el.offsetLeft - el.scrollLeft - 16);
+    list.forEach((item, index) => {
+      const distance = Math.abs(item.offsetLeft - SIDE_PADDING - el.scrollLeft);
       if (distance < min) {
         min = distance;
         closest = index;
       }
     });
     setActive(closest);
-  }, []);
+  }, [items]);
+
+  const goTo = useCallback(
+    (index: number) => {
+      const el = scroller.current;
+      const target = items()[index];
+      if (!el || !target) return;
+      el.scrollTo({ left: Math.max(0, target.offsetLeft - SIDE_PADDING), behavior: "smooth" });
+    },
+    [items],
+  );
 
   useEffect(() => {
     update();
@@ -41,13 +57,22 @@ export default function MobileCarousel({
     return () => window.removeEventListener("resize", update);
   }, [update]);
 
-  function goTo(index: number) {
-    const el = scroller.current;
-    if (!el) return;
-    const items = Array.from(el.children) as HTMLElement[];
-    const target = items[Math.max(0, Math.min(items.length - 1, index))];
-    if (!target) return;
-    el.scrollTo({ left: target.offsetLeft - el.offsetLeft - 16, behavior: "smooth" });
+  // Avance automático (solo en celular y si el usuario no pidió menos movimiento).
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const timer = window.setInterval(() => {
+      const mobile = window.matchMedia("(max-width: 639px)").matches;
+      if (!mobile || Date.now() < pausedUntil.current) return;
+      const total = items().length;
+      if (total < 2) return;
+      goTo((active + 1) % total);
+    }, AUTOPLAY_MS);
+    return () => window.clearInterval(timer);
+  }, [active, goTo, items]);
+
+  function pause() {
+    pausedUntil.current = Date.now() + RESUME_MS;
   }
 
   return (
@@ -55,48 +80,32 @@ export default function MobileCarousel({
       <div
         ref={scroller}
         onScroll={update}
-        className={`-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden ${gridClassName}`}
+        onTouchStart={pause}
+        onPointerDown={pause}
+        className={`relative -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-1 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-0 [&::-webkit-scrollbar]:hidden ${gridClassName}`}
+        style={{ scrollPaddingInline: SIDE_PADDING }}
       >
         {children}
       </div>
 
       {count > 1 && (
-        <div className="mt-5 flex items-center justify-between sm:hidden">
-          <div className="flex items-center gap-2" role="tablist" aria-label="Diapositivas">
-            {Array.from({ length: count }).map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                role="tab"
-                aria-selected={active === index}
-                aria-label={`Ir a la diapositiva ${index + 1}`}
-                onClick={() => goTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  active === index ? "w-7 bg-govco" : "w-2 bg-navy/20"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex gap-2">
+        <div className="mt-2 flex items-center justify-center gap-2 sm:hidden" role="tablist" aria-label="Diapositivas">
+          {Array.from({ length: count }).map((_, index) => (
             <button
+              key={index}
               type="button"
-              onClick={() => goTo(active - 1)}
-              disabled={active === 0}
-              aria-label="Anterior"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-navy shadow-card transition-opacity duration-200 disabled:opacity-30"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => goTo(active + 1)}
-              disabled={active === count - 1}
-              aria-label="Siguiente"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-govco text-white shadow-card transition-opacity duration-200 disabled:opacity-30"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+              role="tab"
+              aria-selected={active === index}
+              aria-label={`Ir a la diapositiva ${index + 1}`}
+              onClick={() => {
+                pause();
+                goTo(index);
+              }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                active === index ? "w-7 bg-govco" : "w-2 bg-navy/20"
+              }`}
+            />
+          ))}
         </div>
       )}
     </div>
