@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const AUTOPLAY_MS = 3800;
-const RESUME_MS = 6000;
+const AUTOPLAY_MS = 2500;
+const RESUME_MS = 5000;
 const SIDE_PADDING = 16;
 
 /**
