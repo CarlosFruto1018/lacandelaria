@@ -27,6 +27,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import QuickAccessCard from "@/app/components/QuickAccessCard";
+import MobileCarousel from "@/app/components/MobileCarousel";
 import { newsItems } from "@/lib/data";
 
 const quickAccess: {
@@ -304,7 +305,8 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 sm:overflow-visible sm:px-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
+        <div className="mt-10">
+        <MobileCarousel gridClassName="sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
           {highlights.map((card, index) => {
             const Icon = card.icon;
             const tone = (["green", "gold", "red", "green"] as const)[index];
@@ -343,6 +345,7 @@ export default function HomePage() {
               </Link>
             );
           })}
+        </MobileCarousel>
         </div>
       </section>
 
