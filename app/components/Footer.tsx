@@ -50,7 +50,7 @@ export default function Footer() {
                   </span>
                   <a
                     href="mailto:contacto@colegiolacandelaria.edu.co"
-                    className="text-white/75 hover:text-gold transition-colors duration-200"
+                    className="break-all text-white/75 hover:text-gold transition-colors duration-200"
                   >
                     contacto@colegiolacandelaria.edu.co
                   </a>

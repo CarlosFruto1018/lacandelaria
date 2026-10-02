@@ -34,7 +34,7 @@ export default function QuickAccessCard({ href, icon: Icon, title, description, 
   const external = /^https?:\/\//.test(href) || href.startsWith("/documentos/");
   const style = tones[tone];
 
-  const className = `group flex items-center gap-4 border-b border-navy/10 py-4 transition-colors duration-200 ${style.border}`;
+  const className = `group flex min-w-0 items-center gap-4 border-b border-navy/10 py-4 transition-colors duration-200 ${style.border}`;
 
   const content = (
     <>

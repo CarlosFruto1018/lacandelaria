@@ -11,10 +11,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
   background-color: var(--color-surface);
   color: var(--color-navy);
   -webkit-font-smoothing: antialiased;

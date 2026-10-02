@@ -244,7 +244,7 @@ export default function HomePage() {
 
       {/* Servicios en línea */}
       <section className="mx-auto mt-14 max-w-6xl px-4 sm:mt-20 sm:px-6">
-        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
           <div>
             <p className="text-sm font-semibold text-govco">Servicios en línea</p>
             <h2 className="tracking-display mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
@@ -260,7 +260,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid gap-x-12 border-t border-navy/10 sm:grid-cols-2">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-x-12 border-t border-navy/10 sm:grid-cols-2">
             {quickAccess.map((item, index) => (
               <QuickAccessCard key={item.title} {...item} tone={(["green", "gold", "red"] as const)[index % 3]} />
             ))}
@@ -348,7 +348,7 @@ export default function HomePage() {
 
       {/* Noticias */}
       <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-24 sm:px-6">
-        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-x-16 gap-y-8 lg:grid-cols-[1fr_2fr]">
           <div className="flex flex-col items-start">
             <p className="text-sm font-semibold text-govco">Comunidad</p>
             <h2 className="tracking-display mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
